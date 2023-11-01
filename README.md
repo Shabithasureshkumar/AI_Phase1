@@ -1,14 +1,4 @@
-#NAALAI THIRAN IBM,
-#DOMAIN :Artificial intelligence, 
-#PROJECT TITLE : AI CHATBOT using Python,
 
-The Required Libraries for Chatbot 
-
-import re,
-import pandas as pd,
-import spacy,
-from flask import Flask, render_template, request,
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 CHATBOT.py
 # Load SpaCy model
