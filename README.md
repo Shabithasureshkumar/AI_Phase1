@@ -1,10 +1,98 @@
+# NAALAI THIRAN IBM,
+# DOMAIN :Artificial intelligence, 
+# PROJECT TITLE : AI CHATBOT using Python,
+
+# Source Data set: dialogs.txt
+
+# The Required Libraries and Dependencies for Chatbot
+
+import re,
+import pandas as pd,
+import spacy,
+from flask import Flask, render_template, request,
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+# Steps To run the chatbot :
+1.create a virtual environment using terminal using #python -m venv myenv,
+2.Activate the virtual environment using #myenv/scipts/Activate,
+3.install the required libraries after activating the virtual environmrnt,
+4.In the installed library "FLASK" we need to insert our HTML file as a template in the templates model for web application,
+5.After all the 4 steps completed the chatbot is ready to run for deployment,
+6.To run and deploy the chatbot web application #python chatbot.py .on the terminal,
+7. Now the chatbot will deployed on the webpage , and user can ask the quries to the chatbot and get the response .
+
+# Template:index.html
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            display: flex;
+            background-color: #007bff;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        .user-message strong {
+            color: #007bff;
+        }
+
+        .bot-message strong {
+            color: #28a745;
+        }
+    </style>
+    </head>
+
+    <body>
+    
+    <div class="container">
+        <h1 style="text-align: center;">Chatbot</h1>
+        <div class="message user-message">
+            <strong>You:</strong> {{ user_input }}
+        </div>
+        <div class="message bot-message">
+            <strong>Bot:</strong> {{ bot_response }}
+        </div>
+        <form method="POST" action="/chat" style="text-align: center;">
+            <label for="user_input">You:</label>
+            <input type="text" id="user_input" name="user_input" value="{{ user_input }}">
+            <input type="submit" value="Ask">
+        </form>
+    </div>
+    </body>
+    </html>
 
 
-CHATBOT.py
-# Load SpaCy model
-nlp = spacy.load("en_core_web_sm")
 
-# Flask setup
+
+
+# CHATBOT.py
+    # Load SpaCy model
+    nlp = spacy.load("en_core_web_sm")
+
+    # Flask setup
 app = Flask(__name__)
 
 # Load the GPT-2 tokenizer and model
